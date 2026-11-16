@@ -1,0 +1,78 @@
+{
+  "name": "abiz",
+  "version": "2026.1116.1",
+  "description": "Check ABIZ (Agentic Business Record) records: find a domain's _abiz DNS assertion, fetch the signed business record it points to, and check it against ABIZ 1.1.",
+  "keywords": [
+    "abiz",
+    "agentic-business-record",
+    "dns",
+    "txt",
+    "ed25519",
+    "jcs",
+    "rfc8785"
+  ],
+  "homepage": "https://abizrecord.org",
+  "bugs": {
+    "url": "https://github.com/abiz-org/abiz-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abiz-org/abiz-js.git"
+  },
+  "license": "Apache-2.0",
+  "author": "ABIZ contributors",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./node": {
+      "types": "./dist/node.d.ts",
+      "import": "./dist/node.js"
+    },
+    "./schema/abiz-business-record-v1.1.schema.json": "./schema/abiz-business-record-v1.1.schema.json",
+    "./schema/abiz-well-known-v1.1.schema.json": "./schema/abiz-well-known-v1.1.schema.json",
+    "./schema/iso3166.json": "./schema/iso3166.json",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "abiz": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "schema",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@cfworker/json-schema": "^4.1.1",
+    "@noble/ed25519": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vitest": "4.0.18"
+  },
+  "overrides": {
+    "rollup": "4.67.4",
+    "vite": "7.3.7",
+    "postcss": "8.5.32",
+    "lilconfig": "3.1.4",
+    "@jridgewell/resolve-uri": "3.1.2"
+  }
+}

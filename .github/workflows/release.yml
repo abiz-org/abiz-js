@@ -1,0 +1,39 @@
+# Publishes abiz to npm when a v* tag is pushed, through npm trusted publishing (OIDC, with
+# provenance): repository abiz-org/abiz-js, workflow release.yml, environment npm. npm cannot
+# create a package over OIDC, so the very first version is published by hand (RELEASING.md).
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/abiz
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      # Node 24 ships npm 11, which trusted publishing needs (11.5.1 or later).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - name: Tag matches the version in package.json
+        run: |
+          version=$(node -p "require('./package.json').version")
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME does not match version $version"; exit 1; }
+          npm --version
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm publish --provenance --access public

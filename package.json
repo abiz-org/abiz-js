@@ -1,5 +1,5 @@
 {
-  "name": "abiz",
+  "name": "@abiz-org/abiz",
   "version": "2026.1116.1",
   "description": "Check ABIZ (Agentic Business Record) records: find a domain's _abiz DNS assertion, fetch the signed business record it points to, and check it against ABIZ 1.1.",
   "keywords": [

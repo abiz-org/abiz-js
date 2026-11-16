@@ -7,16 +7,16 @@ ESM only. Node 20 or later, Deno, Cloudflare Workers and browsers (the offline f
 ## Install
 
 ```bash
-npm install abiz
+npm install @abiz-org/abiz
 ```
 
 ## Example
 
 ```js
-import { resolve } from 'abiz/node';
+import { resolve } from '@abiz-org/abiz/node';
 
 const result = await resolve('example.com'); // or resolve({ website: 'https://www.example.com/contact' })
-// On Workers, Deno or in a browser: import { resolve, dohTransport } from 'abiz'
+// On Workers, Deno or in a browser: import { resolve, dohTransport } from '@abiz-org/abiz'
 // and call resolve('example.com', { transport: dohTransport() }).
 
 if (result.status === 'resolved') {
@@ -66,7 +66,7 @@ The `User-Agent` is `abiz-js/2026.1116.1 (+https://abizrecord.org)` where the pl
 
 ## API
 
-All exported from `abiz` (and re-exported from `abiz/node`).
+All exported from `@abiz-org/abiz` (and re-exported from `@abiz-org/abiz/node`).
 
 | Function | Returns |
 | --- | --- |

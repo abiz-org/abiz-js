@@ -13,6 +13,6 @@ To release:
 
 npm trusted publisher: organisation or user `abiz-org`, repository `abiz-js`, workflow `release.yml`, environment `npm`.
 
-The first version cannot go through OIDC, because npm only accepts a trusted publisher for a package that already exists. It is published once by hand from a clean checkout of the tag (`npm ci --ignore-scripts && npm test && npm publish --access public`), signed in with `npm login --auth-type=web`. Then add the trusted publisher above and set the package to require 2FA and disallow tokens.
+The first version cannot go through OIDC, because npm only accepts a trusted publisher for a package that already exists. It is published once by hand from a clean checkout of the tag (`npm ci && npm run build && npm test && npm publish --access public`), signed in with `npm login --auth-type=web`. Then add the trusted publisher above and set the package to require 2FA and disallow tokens.
 
 Every publishing environment requires a reviewer's approval, and tags matching `v*` are protected.
